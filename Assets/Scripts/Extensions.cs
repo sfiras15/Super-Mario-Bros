@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class Extensions
 {
-    private static LayerMask layerMask = LayerMask.GetMask("Default"); // why is it static? and why layermask ? getmask returns an int 
+    private static LayerMask layerMask = LayerMask.GetMask("Default"); 
     public static bool Raycast(this Rigidbody2D rigidbody,Vector2 direction)
     {
         float distance;
@@ -26,7 +26,7 @@ public static class Extensions
         return hit.collider != null && hit.rigidbody != rigidbody;
     }
 
-    public static bool DotTest(this Transform transform,Transform other , Vector2 testDirection)//why is it static?
+    public static bool DotTest(this Transform transform,Transform other , Vector2 testDirection)
     {
         Vector2 direction = other.position - transform.position;
         return Vector2.Dot(direction.normalized, testDirection) > 0.3f; // the more you decrease the value the larger the hit zone grows
