@@ -37,6 +37,7 @@ public class PlayerMouvement : MonoBehaviour
     private void Update()
     {
         HorizontalMouvement();
+        // check whether the player is on the ground or not
         grounded = rb2D.Raycast(Vector2.down);
         if (grounded)
         {
@@ -47,25 +48,28 @@ public class PlayerMouvement : MonoBehaviour
     }
     private void ApplyGravity()
     {
+        // the more the player  hold on to the jump button the higher mario goes
         bool falling = velocity.y < 0f || !Input.GetButton("Jump");
         float multiplier = falling ? 2f : 1f;
         velocity.y += gravity * multiplier * Time.deltaTime;
+        // to cap the value of velocity.y
         velocity.y = Mathf.Max(gravity / 2f, velocity.y);
     }
     private void GroundedMouvement()
     {
+        // to make sure the value of velocity.y is always close to 0
         velocity.y = Mathf.Max(0f, velocity.y);
         jumping = velocity.y > 0f;
         if (Input.GetButtonDown("Jump"))
         {
             velocity.y = JumpForce;
             jumping = true;
-
         }
     }
     private void HorizontalMouvement()
     {
         inputAxis = Input.GetAxis("Horizontal");
+        // The more the player keeps going left or right the faster he becomes
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
 
         if (rb2D.Raycast(Vector2.right * velocity.x))
@@ -91,6 +95,7 @@ public class PlayerMouvement : MonoBehaviour
    
         leftEdge = cameraMinBounds.x;
         //position.x = Mathf.Clamp(position.x, leftEdge + halfCharWidth, rightEdge - halfCharWidth);
+        // mario can't go the left edge of the screen
         if (position.x - halfCharWidth <= leftEdge)
         {
             position.x = leftEdge + halfCharWidth;
@@ -102,7 +107,8 @@ public class PlayerMouvement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            if (collision.transform.DotTest(transform, Vector2.up))
+            // if mario is going down on an enemy
+            if (transform.DotTest(collision.transform, Vector2.down))
             {
                 velocity.y = JumpForce / 2f + 2f;
                 jumping = true;
@@ -110,6 +116,7 @@ public class PlayerMouvement : MonoBehaviour
         }
         else if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
         {
+            // if mario is hitting the block from below
             if (transform.DotTest(collision.transform, Vector2.up))
             {
                 velocity.y = 0f;
