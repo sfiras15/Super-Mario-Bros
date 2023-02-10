@@ -28,10 +28,11 @@ public static class Extensions
         return hit.collider != null && hit.rigidbody != rigidbody;
     }
     // Transform is extended with this new method 
+    // Checks whether direction of these transforms have roughly the same direction as the testDirection
     public static bool DotTest(this Transform transform,Transform other , Vector2 testDirection)
     {
         Vector2 direction = other.position - transform.position;
-        return Vector2.Dot(direction.normalized, testDirection) > 0.3f; // the more you decrease the value the larger the hit zone grows
+        return Vector2.Dot(direction.normalized, testDirection) > 0.3f; // ~~ 77.24°. the more you decrease the value the larger the hit zone grows
 
         
     }
