@@ -23,7 +23,7 @@ public class Goomba : MonoBehaviour
             }
             else
             {
-                if (transform.DotTest(collision.transform, Vector2.up))// if < 0 use vect2.down else vect2.up
+                if (transform.DotTest(collision.transform, Vector2.up))
                 {
                     spriteRenderer.sprite = stomp;
                     GetComponent<CircleCollider2D>().enabled = false;
