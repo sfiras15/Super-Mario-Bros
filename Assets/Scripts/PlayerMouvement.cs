@@ -11,15 +11,17 @@ public class PlayerMouvement : MonoBehaviour
 
     public Vector3 velocity;
     public float inputAxis;
+    // Variables for clamping the camera
     private float leftEdge;
     private float halfCharWidth;
-
+    // Variables to determine the jumping force of mario & the custom gravity for this game
     public float maxJumpHeight = 5f;
     public float maxJumpTime = 1f;
-
     public float JumpForce => (2f * maxJumpHeight) / (maxJumpTime / 2f);
+
     public float gravity => (-2f * maxJumpHeight) / Mathf.Pow(maxJumpTime / 2f, 2);
 
+    // booleans for differents states of mario
     public bool grounded { get; private set; }
     public bool jumping { get; private set; }
 
@@ -35,7 +37,7 @@ public class PlayerMouvement : MonoBehaviour
     private void Update()
     {
         HorizontalMouvement();
-        grounded = rb2D.Raycast(Vector2.down); //reread this part to understand it 
+        grounded = rb2D.Raycast(Vector2.down);
         if (grounded)
         {
             GroundedMouvement();
