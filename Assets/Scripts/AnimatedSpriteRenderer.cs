@@ -9,6 +9,7 @@ public class AnimatedSpriteRenderer : MonoBehaviour
     public Sprite idleSprite;
     public Sprite jumpSprite;
     public Sprite slideSprite;
+    
     int currentFrame = 0;
     public bool idle;
     public bool sliding;
