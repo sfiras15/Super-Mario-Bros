@@ -6,6 +6,7 @@ using UnityEngine;
 public static class Extensions
 {
     private static LayerMask layerMask = LayerMask.GetMask("Default"); 
+    // Rigidbody2D is extended with this new method 
     public static bool Raycast(this Rigidbody2D rigidbody,Vector2 direction)
     {
         float distance;
@@ -13,6 +14,7 @@ public static class Extensions
         {
             return false;
         }
+        // koopa is taller so his y position is higher than the other gameobjects
         if (rigidbody.gameObject.CompareTag("Koopa"))
         {
             distance = 0.525f;
@@ -25,7 +27,7 @@ public static class Extensions
         RaycastHit2D hit = Physics2D.CircleCast(rigidbody.position, radius, direction.normalized, distance,layerMask);
         return hit.collider != null && hit.rigidbody != rigidbody;
     }
-
+    // Transform is extended with this new method 
     public static bool DotTest(this Transform transform,Transform other , Vector2 testDirection)
     {
         Vector2 direction = other.position - transform.position;
