@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimatedSpriteRenderer : MonoBehaviour
 {
+    // Sprites to the differents states of mario
     public Sprite[] runningSprites;
     public Sprite idleSprite;
     public Sprite jumpSprite;
