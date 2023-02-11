@@ -10,6 +10,7 @@ public class BlockCoin: MonoBehaviour
         GameManager.Instance.AddCoin();
         StartCoroutine(Animate());
     }
+    // The coin will go up from the mystery box then comes back down
     private IEnumerator Animate()
     {
         Vector3 startingPosition = transform.localPosition;
