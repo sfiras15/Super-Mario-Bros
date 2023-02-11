@@ -29,14 +29,14 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Application.targetFrameRate = 60;//fix the fps to 60
+        Application.targetFrameRate = 60;//fix the fps to 60 to smooth out the animations
         NewGame();
     }
     public void LoadLevel(int world, int stage)
     {
         this.world = world;
         this.stage = stage;
-        SceneManager.LoadScene($"{world}.{stage}");//variables in a string
+        SceneManager.LoadScene($"{world}.{stage}");
     }
     private void NewGame()
     {
@@ -44,10 +44,6 @@ public class GameManager : MonoBehaviour
         Coins = 0;
         LoadLevel(1, 1);
     }
-    //public void NextLevel()
-    //{
-    //    LoadLevel(world, stage + 1);
-    //}
     public void ResetLevel(float delay)
     {
         Invoke(nameof(ResetLevel), delay);
@@ -62,8 +58,7 @@ public class GameManager : MonoBehaviour
         else
         {
             GameOver();
-        }
-        
+        }   
     }
     private void GameOver()
     {
