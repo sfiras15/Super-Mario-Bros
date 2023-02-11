@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public AnimatedSpriteRenderer smallRenderer;// what for ?
-    public AnimatedSpriteRenderer bigRenderer;// ?
+    public AnimatedSpriteRenderer smallRenderer;
+    public AnimatedSpriteRenderer bigRenderer;
     public AnimatedSpriteRenderer activeRenderer;
     public DeathAnimation deathAnimation;
     CapsuleCollider2D capsuleCollider;
@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     { 
         smallRenderer.enabled = false;
         bigRenderer.enabled = false;
+        // deathAnimation script will re-activate the sprite Renderer for the small mario
         deathAnimation.enabled = true;
         GameManager.Instance.ResetLevel(3f);
 
@@ -99,6 +100,7 @@ public class Player : MonoBehaviour
             }
             yield return null;
         }
+        // Otherwise the colors for the active renderer will persist in the last second
         smallRenderer.GetComponent<SpriteRenderer>().color = Color.white;
         bigRenderer.GetComponent<SpriteRenderer>().color = Color.white;
         isStar = false;
