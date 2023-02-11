@@ -31,21 +31,17 @@ public class DeathAnimation : MonoBehaviour
             spriteRenderer.sprite = deathSprite;
         }
     }
-    public void UpdatePhysics()// disables  the colliders/ makes the rigidbody kinematic of the gameobject attached to it 
+    public void UpdatePhysics()// disables  the colliders/ makes the rigidbody kinematic
     {
         Collider2D[] colliders = GetComponents<Collider2D>();
+        // Koopa / items will have multiple colliders;
         foreach(Collider2D collider in colliders)
         {
             collider.enabled = false;
         }
         GetComponent<Rigidbody2D>().isKinematic = true;
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-        //PlayerMouvement playerMouvement = GetComponent<PlayerMouvement>();
         EntityAnimation entityAnimation = GetComponent<EntityAnimation>();
-        //if (playerMouvement != null)
-        //{
-        //    playerMouvement.enabled = false;
-        //}
         if (entityAnimation != null)
         {
             entityAnimation.enabled = false;
@@ -54,11 +50,13 @@ public class DeathAnimation : MonoBehaviour
     public IEnumerator Animate()
     {        
         float jumpForce = 10f;
-        Vector3 velocity = Vector3.up * jumpForce;
-        float gravity = -9.8f;
+        float gravity = -36f;
+
         float elapsedTime = 0f;
         float duration = 3f;
-        if (elapsedTime < duration)
+
+        Vector3 velocity = Vector3.up * jumpForce;
+        while (elapsedTime < duration)
         {
             transform.position += velocity * Time.deltaTime;
             velocity.y += gravity * Time.deltaTime;
