@@ -65,6 +65,7 @@ public class AnimatedSpriteRenderer : MonoBehaviour
                 currentFrame++;
             }
         }
+        // This will get triggered when the player touchs the flag
         if (flagAnimation)
         {
             if (currentFrame >= runningSprites.Length)
