@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FlagPole : MonoBehaviour
 {
+    // speed of the levelCompletion animation
     float speed = 6f;
+    // Bottom of the flagPole
     public Transform bottomPosition;
     public Transform flag;
     public Transform castle;
