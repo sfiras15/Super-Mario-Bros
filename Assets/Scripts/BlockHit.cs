@@ -5,10 +5,17 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class BlockHit : MonoBehaviour
 {
+    // Blocks that holds no items will have the value of -1 // mystery blocks will be 1 // some blocks will have from 1 to 5 
     public int maxHits = -1;
     public Sprite emptyBlock;
+    // to avoid offsetting the position of the block while it animates
     private bool animating;
     public GameObject items;
+    SpriteRenderer spriteRenderer;
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!animating && collision.gameObject.CompareTag("Player"))
@@ -21,7 +28,6 @@ public class BlockHit : MonoBehaviour
     }
     private void Hit()
     {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         maxHits--;
         if (spriteRenderer.sprite != emptyBlock && items != null)
         {
