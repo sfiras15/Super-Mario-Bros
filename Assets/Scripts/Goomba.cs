@@ -23,6 +23,7 @@ public class Goomba : MonoBehaviour
             }
             else
             {
+                // If mario is landing on him from above
                 if (transform.DotTest(collision.transform, Vector2.up))
                 {
                     spriteRenderer.sprite = stomp;
