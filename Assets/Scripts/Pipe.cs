@@ -5,10 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
+// Script attached to a box collider set as trigger above the pipe
 public class Pipe : MonoBehaviour
 {
     public Transform connection;
+    // The direction at which the player enters the pipe
     public Vector3 enterDirection = Vector3.down;
+    // The direction at which the player exits the connected pipe
     public Vector3 exitDirection = Vector3.zero;
     public KeyCode enterKeyCode = KeyCode.S;
     private void OnTriggerStay2D(Collider2D collision)
@@ -25,6 +28,7 @@ public class Pipe : MonoBehaviour
     {
         player.GetComponent<PlayerMouvement>().enabled = false;
         Vector3 enteredPosition = transform.position + enterDirection;
+        // Make mario smaller as he goes into the pipe
         Vector3 enteredScale = Vector3.one * 0.5f;
         yield return Move(player, enteredPosition, enteredScale);
         // Exit part 
