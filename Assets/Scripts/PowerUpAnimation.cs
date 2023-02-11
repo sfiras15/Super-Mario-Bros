@@ -23,7 +23,7 @@ public class PowerUpAnimation : MonoBehaviour
         physicsCollider.enabled = false;
         rb2D.isKinematic = true;
         entityMouvement.enabled = false;
-
+        // The animation of the object should only play after the animation of the block itself ends
         yield return new WaitForSeconds(0.25f);
 
         spriteRenderer.enabled = true;
